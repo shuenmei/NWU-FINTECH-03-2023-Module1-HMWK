@@ -1,0 +1,66 @@
+****** 	DELETE ALL 'Solved', 'Instructor', 'Excel', & 'LessonPlan' FILES/FOLDERS ******
+cd /f/Trilogy/NW_2/NU-VIRT-FIN-PT-02-2022-U-LOL/01-Lesson-Plans/
+cd 
+
+find . -type d -name Solved -print0|xargs -0 rm -r --
+find . -type d -name *Ins* -print0|xargs -0 rm -r --
+find . -type f -name *.xlsx -print0|xargs -0 rm -r --
+find . -type f -name LessonPlan.md -print0|xargs -0 rm -r --
+rm README.md
+
+****** 		AFTER PASTING LESSON FOLDER TO MERGE SOLUTIONS	       ******
+****** 	DELETE ALL 'Instructor', 'Excel', & 'LessonPlan' FILES/FOLDERS ******
+find . -type d -name *Ins_* -print0|xargs -0 rm -r --
+find . -type f -name *.xlsx -print0|xargs -0 rm -r --
+find . -type f -name LessonPlan.md -print0|xargs -0 rm -r --
+
+
+******               PYVIZ ENV SETUP           ****** 
+****** 						     ****** 
+
+### MUST HAVE ANACONDA BASE NOT MINICONDA ###
+conda activate base
+conda create -n pyvizenv python=3.7 -y
+conda activate pyvizenv
+conda install -c conda-forge python-dotenv -y
+conda install -c anaconda nb_conda -y
+conda install -c conda-forge nodejs=12 -y
+conda install -c pyviz holoviz -y
+conda install -c plotly plotly -y
+conda install -c conda-forge jupyterlab=2.2 -y
+conda install -c anaconda numpy==1.19 -y
+conda install -c conda-forge matplotlib==3.0.3 -y
+jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
+jupyter labextension install jupyterlab-plotly --no-build
+jupyter labextension install plotlywidget --no-build
+jupyter labextension install @pyviz/jupyterlab_pyviz --no-build
+jupyter lab build
+
+
+### UBUNTU INSTALL OR FOR FAILED ABOVE INSTALL ###
+conda activate base
+conda create -n pyvizenv python=3.7 -y
+conda activate pyvizenv
+yes | pip install numpy==1.19
+yes | pip install matplotlib==3.0.3 -y
+conda install -c anaconda pandas -y
+conda install -c conda-forge python-dotenv -y
+conda install -c anaconda nb_conda -y
+conda install -c conda-forge nodejs=12 -y
+conda install -c pyviz holoviz -y
+conda install -c plotly plotly -y
+conda install -c conda-forge jupyterlab=2.2 -y
+jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
+jupyter labextension install jupyterlab-plotly --no-build
+jupyter labextension install plotlywidget --no-build
+jupyter labextension install @pyviz/jupyterlab_pyviz --no-build
+jupyter lab build
+
+
+
+conda update conda -y
+conda update anaconda -y
+conda install -c conda-forge jupyterlab -y
+conda create -n dev python=3.7 anaconda -y
+conda activate dev -y
+conda install -c conda-forge nbclassic=0.2.8 -y
